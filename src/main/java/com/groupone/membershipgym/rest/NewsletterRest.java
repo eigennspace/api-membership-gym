@@ -35,12 +35,12 @@ public class NewsletterRest {
 
             NewsletterResponse response = newsletter.convertToResponse();
 
-            var body = ResponseHandler.generateResponse("", HttpStatus.CREATED,responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), response);
+            ResponseEntity<Object> body = ResponseHandler.generateResponse("", HttpStatus.CREATED,responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), response);
             return ResponseEntity.ok().headers(responseHeader).body(body);
 
         } catch (Exception e){
 
-            var body = ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST,responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), null);
+            ResponseEntity<Object> body = ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST,responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), null);
             return ResponseEntity.badRequest().headers(responseHeader).body(body);
 
         }

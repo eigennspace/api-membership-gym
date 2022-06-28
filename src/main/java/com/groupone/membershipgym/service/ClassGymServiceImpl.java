@@ -25,7 +25,7 @@ public class ClassGymServiceImpl implements ClassGymService{
     @Override
     public ClassGym getOneClassGym(Long id) throws DataException {
         Optional<ClassGym> optionalClassGym = this.classGymRepository.findById(id);
-        if (optionalClassGym.isEmpty()){
+        if (optionalClassGym==null){
             throw new DataException("Class of Gym is not found");
         }
         return optionalClassGym.get();

@@ -52,7 +52,7 @@ public class BookingServiceImpl implements BookingService{
     @Override
     public Booking getOneBooking(BigInteger id) throws DataException {
         Optional<Booking> booking = bookingRepository.findById(id);
-        if (booking.isEmpty()){
+        if (booking==null){
             throw new DataException("Booking is not found");
         }
         return booking.get();

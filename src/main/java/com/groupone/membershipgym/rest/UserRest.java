@@ -45,7 +45,7 @@ public class UserRest {
             logger.info("==============END CREATE DATA================");
 
             //Another way to return Response Entity with headers is showing in the body
-            var body= ResponseHandler.generateResponse("", HttpStatus.CREATED, responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), userResponse);
+            ResponseEntity<Object> body= ResponseHandler.generateResponse("", HttpStatus.CREATED, responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), userResponse);
             return ResponseEntity.ok().headers(responseHeader).body(body);
 //            return ResponseHandler.generateResponse("", HttpStatus.CREATED, responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), userResponse);
 
@@ -54,7 +54,7 @@ public class UserRest {
             logger.error(e.getMessage());
             logger.error("===========================================");
 
-            var body = ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), null);
+            ResponseEntity<Object> body = ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), null);
             return ResponseEntity.badRequest().headers(responseHeader).body(body);
 //          return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), null);
         }
@@ -76,7 +76,7 @@ public class UserRest {
             logger.info(usersList);
             logger.info("==============END GET DATA================");
 
-            var body = ResponseHandler.generateResponse("", HttpStatus.OK,responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), userResponseList);
+            ResponseEntity<Object> body = ResponseHandler.generateResponse("", HttpStatus.OK,responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), userResponseList);
             return ResponseEntity.ok().headers(responseHeader).body(body);
 
 //            return ResponseHandler.generateResponse("", HttpStatus.OK,responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), userResponseList);
@@ -87,7 +87,7 @@ public class UserRest {
             logger.error(e.getMessage());
             logger.error("===========================================");
 
-            var body = ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS,responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), null);
+            ResponseEntity<Object> body = ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS,responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), null);
             return ResponseEntity.badRequest().headers(responseHeader).body(body);
 
 //            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS,responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), null);
@@ -108,7 +108,7 @@ public class UserRest {
             logger.info(user);
             logger.info("==============END GET ONE DATA================");
 
-            var body = ResponseHandler.generateResponse("", HttpStatus.OK,responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), userResponse);
+            ResponseEntity<Object> body = ResponseHandler.generateResponse("", HttpStatus.OK,responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), userResponse);
             return ResponseEntity.ok().headers(responseHeader).body(body);
 
 //            return ResponseHandler.generateResponse("", HttpStatus.OK,responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), userResponse);
@@ -119,7 +119,7 @@ public class UserRest {
             logger.error(e.getMessage());
             logger.error("=============================================");
 
-            var body = ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND,responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), null);
+            ResponseEntity<Object> body = ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND,responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), null);
             return ResponseEntity.badRequest().headers(responseHeader).body(body);
 
 //            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND,responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), null);
@@ -143,7 +143,7 @@ public class UserRest {
             logger.info(updatedUser);
             logger.info("==============END UPDATED DATA================");
 
-            var body = ResponseHandler.generateResponse("",HttpStatus.OK ,responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), userResponse);
+            ResponseEntity<Object> body = ResponseHandler.generateResponse("",HttpStatus.OK ,responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), userResponse);
             return ResponseEntity.ok().headers(responseHeader).body(body);
 
 //            return ResponseHandler.generateResponse("", HttpStatus.OK,responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), userResponse);
@@ -154,7 +154,7 @@ public class UserRest {
             logger.error(e.getMessage());
             logger.error("=============================================");
 
-            var body = ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), null);
+            ResponseEntity<Object> body = ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), null);
             return ResponseEntity.badRequest().headers(responseHeader).body(body);
 
 //            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), null);
@@ -171,7 +171,7 @@ public class UserRest {
             logger.info("Data with id = " + id + " successfully delete");
             logger.info("==============END DELETED DATA================");
 
-            var body = ResponseHandler.generateResponse("", HttpStatus.OK,responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), "deleted" );
+            ResponseEntity<Object> body = ResponseHandler.generateResponse("", HttpStatus.OK,responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), "deleted" );
             return ResponseEntity.ok().headers(responseHeader).body(body);
 
 //            return ResponseHandler.generateResponse("", HttpStatus.OK,responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), "deleted" );
@@ -181,7 +181,7 @@ public class UserRest {
             logger.error(e.getMessage());
             logger.error("=============================================");
 
-            var body = ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND,responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), null);
+            ResponseEntity<Object> body = ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND,responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), null);
             return ResponseEntity.badRequest().headers(responseHeader).body(body);
 
 //            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND,responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), null);

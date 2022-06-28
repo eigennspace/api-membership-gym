@@ -35,7 +35,7 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public Admins getOneAdmin(BigInteger id) throws DataException {
         Optional<Admins> optionalAdmin = this.adminRepository.findById(id);
-        if (optionalAdmin.isEmpty()) {
+        if (optionalAdmin==null) {
             throw new DataException("Admin is not found");
         }
         return optionalAdmin.get();
@@ -51,7 +51,7 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public void deleteAdmin(BigInteger id) throws DataException {
         Optional<Admins> optionalAdmin = this.adminRepository.findById(id);
-        if (optionalAdmin.isEmpty()) {
+        if (optionalAdmin==null) {
             throw new DataException("Admin is not found");
         }
         this.adminRepository.delete(optionalAdmin.get());

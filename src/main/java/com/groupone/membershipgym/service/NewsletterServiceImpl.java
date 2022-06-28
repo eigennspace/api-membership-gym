@@ -45,7 +45,7 @@ public class NewsletterServiceImpl implements NewsletterService {
     @Override
     public Newsletter getOneNewsletter(Long id) throws DataException {
         Optional<Newsletter> optional = this.newsletterRepository.findById(id);
-        if (optional.isEmpty()){
+        if (optional==null){
             throw new DataException("Newsletter is not found");
         }
         return optional.get();

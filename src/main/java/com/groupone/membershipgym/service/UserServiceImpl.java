@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.math.BigInteger;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -28,7 +27,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public Users getOneUser(Long id) throws DataException {
         Optional<Users> optionalUser = this.userRepository.findById(id);
-        if (optionalUser.isEmpty()) {
+        if (optionalUser==null) {
             throw new DataException("User is not found");
         }
         return optionalUser.get();
@@ -56,7 +55,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public void deleteUser(Long id) throws DataException {
         Optional<Users> optionalUser = this.userRepository.findById(id);
-        if (optionalUser.isEmpty()){
+        if (optionalUser==null){
             throw new DataException("User is not found");
         }
         this.userRepository.delete(optionalUser.get());
