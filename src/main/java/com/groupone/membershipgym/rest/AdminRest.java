@@ -19,6 +19,7 @@ import java.math.BigInteger;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor
@@ -66,7 +67,7 @@ public class AdminRest {
 
             List<AdminResponse> adminResponses = adminList.stream()
                     .map(Admins::convertToResponse)
-                    .toList();
+                    .collect(Collectors.toList());
 
             logger.info("================GET DATA==================");
             logger.info(adminList);

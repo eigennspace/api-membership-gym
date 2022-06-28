@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/v1/api")
@@ -55,7 +56,7 @@ public class NewsletterRest {
 
             List<NewsletterResponse> responses = newsletterList.stream()
                     .map(Newsletter::convertToResponse)
-                    .toList();
+                    .collect(Collectors.toList());
 
             ResponseEntity<Object> body = ResponseHandler.generateResponse("", HttpStatus.OK, responseHeader,ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), responses);
             return ResponseEntity.ok().headers(responseHeader).body(body);

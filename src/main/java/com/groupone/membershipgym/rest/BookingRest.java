@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/v1/api")
@@ -52,7 +53,7 @@ public class BookingRest {
 
             List<BookingResponse> bookingResponses = bookingList.stream()
                     .map(Booking::convertToResponse)
-                    .toList();
+                    .collect(Collectors.toList());
 
             return ResponseHandler.generateResponse("", HttpStatus.OK, responseHeader, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")), bookingResponses);
         } catch (Exception e) {
