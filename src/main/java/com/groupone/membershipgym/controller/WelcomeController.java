@@ -1,15 +1,14 @@
 package com.groupone.membershipgym.controller;
 
 import com.groupone.membershipgym.entity.Users;
-import com.groupone.membershipgym.repository.UserRepository;
-import com.groupone.membershipgym.response.ResponseHandler;
-import com.groupone.membershipgym.response.UserResponse;
+import com.groupone.membershipgym.request.UserRequest;
 import com.groupone.membershipgym.rest.AdminRest;
+import com.groupone.membershipgym.rest.UserRest;
+import com.groupone.membershipgym.service.UserServiceImpl;
+import com.groupone.membershipgym.utils.DataException;
 import lombok.AllArgsConstructor;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,15 +16,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-
 @Controller
 @AllArgsConstructor
 public class WelcomeController {
 
     private static final Logger logger = LogManager.getLogger(AdminRest.class);
-    private final UserRepository userRepository;
+    private final UserServiceImpl userService;
 
     @GetMapping("/")
     public String index(){
@@ -41,17 +37,9 @@ public class WelcomeController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> submit(@ModelAttribute("user") Users user){
+    public ResponseEntity<?> submit(@ModelAttribute("user") UserRequest userRequest) throws DataException {
+        UserRest rest = new UserRest(userService);
 
-        this.userRepository.save(user);
-        logger.info("Success create " + user);
-
-        UserResponse response = user.convertToResponse();
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Name", "GYM MEMBERSHIP APP");
-
-        ResponseEntity<?> body = ResponseHandler.generateResponse("", HttpStatus.OK, headers, ZonedDateTime.now(ZoneId.of("Asia/Tokyo")) ,response);
-        return ResponseEntity.status(body.getStatusCode()).headers(headers).body(body);
+        return rest.createUser(userRequest);
     }
 }
